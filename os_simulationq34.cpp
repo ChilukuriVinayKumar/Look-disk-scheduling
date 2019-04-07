@@ -18,7 +18,7 @@ class DiskScheduling
 {
 	vector<int>qOfPending;
 	vector<int>diskArmDist;
-	int totalcylinders,curr,previous,n,val,max,min,prereq,diff=0;
+	int totalcylinders,curr,previous,n,val,max,min,prereq,diff;
 	public:
 		void getData()
 		{
