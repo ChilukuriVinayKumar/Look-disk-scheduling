@@ -22,17 +22,20 @@ class DiskScheduling
 	public:
 		void getData()
 		{
-			cout<<"enter the number of cylinders :: ";
+			cout<<"\t\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"<<endl<<endl;
+			cout<<"\t\t\t\tLOOK DISK SCHEDULING "<<endl<<endl;
+			cout<<"\t\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"<<endl<<endl;
+			cout<<"\tEnter the number total number of cylinders :: ";
 			cin>>totalcylinders;
-			cout<<"enter the currently serving request :: ";
+			cout<<"\tEnter the currently serving request :: ";
 			cin>>curr;
-			cout<<"enter the previous process :: ";
+			cout<<"\tEnter the previously served request  :: ";
 			cin>>previous;
-			cout<<"enter the number of pending requests in Queue :: ";
+			cout<<"\tEnter the number of pending requests in Queue :: ";
 			cin>>n;
 			for(int i=0;i<n;i++)
 			{
-				cout<<"--> ";
+				cout<<"\t--> ";
 				cin>>val;
 				qOfPending.push_back(val);
 			}
@@ -41,12 +44,10 @@ class DiskScheduling
 		{
 			max=findMax(qOfPending);
 			min=findMin(qOfPending);
-			cout<<"min is: "<<min<<endl;
-			cout<<"max is: "<<max<<endl;
 			prereq=curr;
 			if(curr>previous)
 			{
-				cout<<"prereq: "<<prereq<<endl;
+				cout<<"\tDirection: FORWARD-->BACKWARD"<<endl;
 				for(int i=curr;i<=max;i++)
 				{ 
     				if(find(i,qOfPending)==true) 
@@ -57,7 +58,6 @@ class DiskScheduling
 						diff=0; 		
         			} 
         		}	
-        		//cout<<"forward done"<<endl;
         		for(int i=curr;i>=min;i--)
 				{ 
     				if(find(i,qOfPending)==true) 
@@ -71,10 +71,10 @@ class DiskScheduling
 			}
 			else
 			{
+				cout<<"\tDirection: BACKWARD-->FORWARD"<<endl;
 				for(int i=curr;i>=min;i--)
 				{
-
-    				if(find(i,qOfPending)==true) 
+					if(find(i,qOfPending)==true) 
 					{
 						diff=prereq-i;
 						diskArmDist.push_back(diff);
@@ -97,13 +97,13 @@ class DiskScheduling
 		void finalBlock()
 		{
 			int sum=0;
-			cout<<"elements of diskArmDist are: "<<endl;
 			for(int i=0;i<diskArmDist.size();i++)
 			{
-				cout<<diskArmDist.at(i)<<endl;
 				sum=sum+diskArmDist.at(i);
 			}
-			cout<<"the total distance (in cylinders) that the disk arm moves to satisfy all the pending requests :: "<<sum;
+			cout<<"    +-----------------------------------------------------------------------------------------------------------+"<<endl;
+			cout<<"    |  The total distance (in cylinders) that the disk arm moves to satisfy all the pending requests :: "<<sum<<"    |"<<endl;
+			cout<<"    +-----------------------------------------------------------------------------------------------------------+";
 		}
 };
 int main()
@@ -140,7 +140,6 @@ int findMin(vector<int> qOfPending)
 bool find(int i,vector<int> qOfPending)
 {
 	int var=i;
-	//cout<<"var: "<<var<<endl;
 	for(int j=0;j<qOfPending.size();j++)
 	{
 		if(var==qOfPending.at(j))
