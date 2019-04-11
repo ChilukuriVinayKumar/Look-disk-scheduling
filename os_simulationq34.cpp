@@ -16,8 +16,7 @@ int findMin(vector<int>);
 bool find(int,vector<int>);
 class DiskScheduling
 {
-	vector<int>qOfPending;
-	vector<int>diskArmDist;
+	vector<int>qOfPending,diskArmDist;
 	int totalcylinders,curr,previous,n,val,max,min,prereq,diff;
 	public:
 		void getData()
@@ -42,8 +41,8 @@ class DiskScheduling
 		}
 		void startProcess()
 		{
-			max=findMax(qOfPending);
-			min=findMin(qOfPending);
+			max=*(std::max_element(qOfPending.begin(),qOfPending.end()));
+			min=*(std::min_element(qOfPending.begin(),qOfPending.end()));
 			prereq=curr;
 			if(curr>previous)
 			{
@@ -101,9 +100,9 @@ class DiskScheduling
 			{
 				sum=sum+diskArmDist.at(i);
 			}
-			cout<<"    +-----------------------------------------------------------------------------------------------------------+"<<endl;
-			cout<<"    |  The total distance (in cylinders) that the disk arm moves to satisfy all the pending requests :: "<<sum<<"    |"<<endl;
-			cout<<"    +-----------------------------------------------------------------------------------------------------------+";
+			cout<<"    +------------------------------------------------------------------------------------------------------------+"<<endl;
+			cout<<"    |  The total distance (in cylinders) that the disk arm moves to satisfy all the pending requests :: "<<sum<<"     |"<<endl;
+			cout<<"    +------------------------------------------------------------------------------------------------------------+";
 		}
 };
 int main()
@@ -112,30 +111,6 @@ int main()
 	sc.getData();
 	sc.startProcess();
 	sc.finalBlock();
-}
-int findMax(vector<int> qOfPending)
-{
-	int imax=qOfPending.at(0);
-	for(int i=0;i<qOfPending.size();i++)
-	{
-		if(qOfPending.at(i)>imax)
-		{
-			imax=qOfPending.at(i);
-		}
-	}
-	return imax; 
-}
-int findMin(vector<int> qOfPending)
-{
-	int imin=qOfPending.at(0);
-	for(int i=0;i<qOfPending.size();i++)
-	{
-		if(qOfPending.at(i)<imin)
-		{
-			imin=qOfPending.at(i);
-		}
-	}
-	return imin; 
 }
 bool find(int i,vector<int> qOfPending)
 {
@@ -149,3 +124,46 @@ bool find(int i,vector<int> qOfPending)
 	}
 	return false;
 }
+/*
+Test Case 1:
+5000
+143
+125
+9
+86 
+1470
+913
+1774
+948
+1509
+1022
+1750 
+130
+ 
+Output:
+	Direction: FORWARD-->BACKWARD
+    +-----------------------------------------------------------------------------------------------------------+
+    |  The total distance (in cylinders) that the disk arm moves to satisfy all the pending requests :: 3319    |
+    +-----------------------------------------------------------------------------------------------------------+
+
+=======================================
+Test Case 2:
+200
+53
+40
+8
+98
+183
+41
+122
+14
+124 
+65 
+67
+
+Output:
+	 Direction: FORWARD-->BACKWARD
+    +-----------------------------------------------------------------------------------------------------------+
+    |  The total distance (in cylinders) that the disk arm moves to satisfy all the pending requests :: 299     |
+    +-----------------------------------------------------------------------------------------------------------+
+*/
