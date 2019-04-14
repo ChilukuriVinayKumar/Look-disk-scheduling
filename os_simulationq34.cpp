@@ -21,9 +21,9 @@ class DiskScheduling
 	public:
 		void getData()
 		{
-			cout<<"\t\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"<<endl<<endl;
-			cout<<"\t\t\t\tLOOK DISK SCHEDULING "<<endl<<endl;
-			cout<<"\t\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"<<endl<<endl;
+			cout<<"\t++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<endl;
+			cout<<"\t|\t\t\t\tLOOK DISK SCHEDULING\t\t\t\t     |"<<endl;
+			cout<<"\t++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<endl<<endl;
 			cout<<"\tEnter the number total number of cylinders :: ";
 			cin>>totalcylinders;
 			cout<<"\tEnter the currently serving request :: ";
@@ -32,11 +32,21 @@ class DiskScheduling
 			cin>>previous;
 			cout<<"\tEnter the number of pending requests in Queue :: ";
 			cin>>n;
+			if(curr>totalcylinders-1 || previous>totalcylinders-1 || totalcylinders==0 || curr<0 || previous<0)
+			{
+				cout<<"\tError!!! Values Not in Range please check the values "<<endl;
+				exit(0);
+			}
 			for(int i=0;i<n;i++)
 			{
 				cout<<"\t--> ";
 				cin>>val;
 				qOfPending.push_back(val);
+				if(val>totalcylinders-1 || val<0)
+				{
+					cout<<"\t!!Error!! value not in range please check the values you have entered";
+					exit(0);
+				}
 			}
 		}
 		void startProcess()
@@ -100,9 +110,9 @@ class DiskScheduling
 			{
 				sum=sum+diskArmDist.at(i);
 			}
-			cout<<"    +------------------------------------------------------------------------------------------------------------+"<<endl;
-			cout<<"    |  The total distance (in cylinders) that the disk arm moves to satisfy all the pending requests :: "<<sum<<"     |"<<endl;
-			cout<<"    +------------------------------------------------------------------------------------------------------------+";
+			cout<<"       +------------------------------------------------------------------------------------------------------------+"<<endl;
+			cout<<"       |  The total distance (in cylinders) that the disk arm moves to satisfy all the pending requests :: "<<sum<<"\t    |"<<endl;
+			cout<<"       +------------------------------------------------------------------------------------------------------------+";
 		}
 };
 int main()
