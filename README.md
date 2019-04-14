@@ -6,3 +6,7 @@ The queue of pending requests, in FIFO order is:
 Starting from the current head position, what is the total distance (in cylinders) that the disk arm moves to satisfy all the pending requests for each of the 
 LOOK disk-scheduling algorithms?  
 TestCases::
+TestCase1:: 
+![Screenshot (72)](https://user-images.githubusercontent.com/47757720/56092244-213aec00-5ed7-11e9-9bef-07267eec6d8c.png)
+TestCase2::
+![Screenshot (71)](https://user-images.githubusercontent.com/47757720/56092246-2435dc80-5ed7-11e9-8263-dd61c51daaf5.png)
